@@ -1,0 +1,48 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY WISP - https:\/\/wisp.gg\/",
+    "meta": {
+        "version": "PTDL_v1"
+    },
+    "exported_at": "2021-07-18T07:38:03+01:00",
+    "name": "SCPSL-Egg",
+    "tag": null,
+    "author": "PintTheDragon@hotmail.com",
+    "description": "An egg for SCP: Secret Laboratory, which automatically installs EXILED.",
+    "image": "quay.io\/pint\/scpsl-egg:latest",
+    "startup": ".\/server\/LocalAdmin {{SERVER_PORT}}",
+    "config": {
+        "files": "LOCATED IN configs/files.json",
+        "startup": "LOCATED IN configs/startup.json",
+        "logs": "LOCATED IN configs/logs.json",
+        "stop": "exit",
+        "custom": "{}"
+    },
+    "scripts": {
+        "installation": {
+            "script": "LOCATED IN install.sh",
+            "container": "quay.io/pint/scpsl-egg:latest",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Install EXILED",
+            "description": "Should EXILED be installed?",
+            "env_variable": "INSTALL_EXILED",
+            "tickable": true,
+            "user_viewable": 0,
+            "user_editable": 1,
+            "rules": "required|string|max:4"
+        },
+        {
+            "name": "AUTO_UPDATE",
+            "description": "Should the game (and EXILED, if it is enabled) be automatically updated on server start?",
+            "env_variable": "AUTO_UPDATE",
+            "tickable": true,
+            "user_viewable": 0,
+            "user_editable": 1,
+            "rules": "required|string|max:4"
+        }
+    ],
+    "mods": []
+}

@@ -1,0 +1,8 @@
+{
+  "config_gameplay.txt": {
+    "parser": "yaml",
+    "find": {
+      "server_ip": "0.0.0.0"
+    }
+  }
+}
