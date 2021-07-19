@@ -9,12 +9,13 @@ rm steamcmd.tar.gz
 
 mkdir -p server_files
 
-./steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/container/server_files +app_update 996560 validate +qut
+./steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/container/server_files +app_update 996560 validate +quit
 
 if [ "${INSTALL_EXILED}" == "true" ]; then
   cd server_files || exit 1
 
   wget https://github.com/Exiled-Team/Exiled/releases/latest/download/Exiled.Installer-Linux
+  chmod +x ./Exiled.Installer-Linux
   ./Exiled.Installer-Linux -p /home/container/server_files --appdata /home/container/.config
 
   cd ../ || exit 1
