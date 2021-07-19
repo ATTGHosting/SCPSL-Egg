@@ -1,22 +1,30 @@
 #!/bin/bash
 
-cd /home/container || exit 1
-
-mkdir -p /home/container/steamcmd
+# Download SteamCMD
+cd /tmp || exit 1
 curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
-tar -xzvf steamcmd.tar.gz -C steamcmd
-rm steamcmd.tar.gz
 
-mkdir -p server_files
+# Extract SteamCMD
+mkdir -p /mnt/server/steam
+tar -xzvf steamcmd.tar.gz -C /mnt/server/steam
+cd /mnt/server/steam || exit 1
 
-./steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/container/server_files +app_update 996560 validate +quit
+# Make SteamCMD work
+chown -R root:root /mnt
+export HOME=/mnt/server
 
+# Install the server
+mkdir -p /mnt/server/server_files
+./steamcmd.sh +login anonymous +force_install_dir /mnt/server/server_files +app_update 996560 validate +quit
+
+# Install EXILED (if enabled)
 if [ "${INSTALL_EXILED}" == "true" ]; then
-  cd server_files || exit 1
+  cd /mnt/server/server_files || exit 1
 
-  wget https://github.com/Exiled-Team/Exiled/releases/latest/download/Exiled.Installer-Linux
+  curl -sSL -o Exiled.Installer-Linux https://github.com/Exiled-Team/Exiled/releases/latest/download/Exiled.Installer-Linux
   chmod +x ./Exiled.Installer-Linux
-  ./Exiled.Installer-Linux -p /home/container/server_files --appdata /home/container/.config
+  mkdir -p /mnt/server/.config
+  ./Exiled.Installer-Linux -p /mnt/server/server_files --appdata /mnt/server/.config
 
-  cd ../ || exit 1
+  cd /mnt/server || exit 1
 fi

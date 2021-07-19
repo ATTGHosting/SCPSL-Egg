@@ -10,10 +10,10 @@ if [ "${AUTO_UPDATE}" == "true" ]; then
     cd server_files || exit 1
 
     ./Exiled.Installer-Linux -p /home/container/server_files --appdata /home/container/.config
-
-    cd ../ || exit 1
   fi
 fi
+
+cd /home/container || exit 1
 
 printf "\033[1m\033[33mcontainer@pterodactyl~ \033[0m%s\n" "$PARSED"
 # shellcheck disable=SC2086

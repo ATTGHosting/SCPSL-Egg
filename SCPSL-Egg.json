@@ -8,8 +8,8 @@
     "tag": null,
     "author": "PintTheDragon@hotmail.com",
     "description": "An egg for SCP: Secret Laboratory, which automatically installs EXILED.",
-    "image": "pintthedragon\/scpsl-egg:1.0.1",
-    "startup": ".\/server\/LocalAdmin {{SERVER_PORT}}",
+    "image": "pintthedragon\/scpsl-egg:1.0.3",
+    "startup": ".\/server_files\/LocalAdmin {{SERVER_PORT}}",
     "config": {
         "files": "LOCATED IN configs/files.json",
         "startup": "LOCATED IN configs/startup.json",
@@ -20,7 +20,7 @@
     "scripts": {
         "installation": {
             "script": "LOCATED IN install.sh",
-            "container": "pintthedragon/scpsl-egg:1.0.1",
+            "container": "pintthedragon/scpsl-egg:1.0.3",
             "entrypoint": "bash"
         }
     },
@@ -30,7 +30,7 @@
             "description": "Should EXILED be installed?",
             "env_variable": "INSTALL_EXILED",
             "tickable": true,
-            "user_viewable": 0,
+            "user_viewable": 1,
             "user_editable": 1,
             "rules": "required|string|max:4"
         },
@@ -39,7 +39,7 @@
             "description": "Should the game (and EXILED, if it is enabled) be automatically updated on server start?",
             "env_variable": "AUTO_UPDATE",
             "tickable": true,
-            "user_viewable": 0,
+            "user_viewable": 1,
             "user_editable": 1,
             "rules": "required|string|max:4"
         }
