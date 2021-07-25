@@ -8,7 +8,7 @@
     "tag": null,
     "author": "PintTheDragon@hotmail.com",
     "description": "An egg for SCP: Secret Laboratory, which automatically installs EXILED.",
-    "image": "pintthedragon\/scpsl-egg:1.0.4",
+    "image": "pintthedragon\/scpsl-egg:1.0.5",
     "startup": ".\/server_files\/LocalAdmin {{SERVER_PORT}}",
     "config": {
         "files": "LOCATED IN configs/files.json",
