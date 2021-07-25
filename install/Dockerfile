@@ -16,3 +16,5 @@ RUN apt update && \
     apt update
 
 RUN apt install -y curl ca-certificates openssl git tar bash sqlite fontconfig gnupg wget lib32gcc1
+
+COPY ./config_localadmin.txt /config_localadmin.txt
