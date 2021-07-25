@@ -2,7 +2,8 @@
   "config_gameplay.txt": {
     "parser": "yaml",
     "find": {
-      "server_ip": "0.0.0.0"
+      "server_ip": "auto",
+      "ipv4_bind_ip": "0.0.0.0"
     }
   }
 }
