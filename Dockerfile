@@ -7,8 +7,13 @@ USER root
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN dpkg --add-architecture i386
+
 RUN apt update && \
-    apt upgrade -y
+    apt upgrade -y && \
+    apt update
 
 RUN apt install -y curl ca-certificates openssl git tar bash sqlite fontconfig gnupg wget lib32gcc1 ffmpeg
 
@@ -20,14 +25,17 @@ RUN apt install -y mono-complete
 
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash - && \
     apt update && \
-    apt install -y nodejs
+    apt install -y nodejs && \
+    npm install -g npm yarn
 
-RUN adduser --disabled-password --home /home/container container --gecos "" --uid 999 && \
+RUN adduser --home /home/container container --disabled-password --gecos "" --uid 999 && \
     usermod -a -G container container && \
     chown -R container:container /home/container
 
 RUN mkdir /mnt/server && \
     chown -R container:container /mnt/server
+
+ARG CACHBUST=1
 
 USER container
 ENV USER=container HOME=/home/container
