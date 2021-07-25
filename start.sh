@@ -9,6 +9,11 @@ if [ "${AUTO_UPDATE}" == "true" ]; then
   if [ "${INSTALL_EXILED}" == "true" ]; then
     cd server_files || exit 1
 
+    if [ ! -f "Exiled.Installer-Linux" ]; then
+      curl -sSL -o Exiled.Installer-Linux https://github.com/Exiled-Team/Exiled/releases/latest/download/Exiled.Installer-Linux
+      chmod +x ./Exiled.Installer-Linux
+    fi
+
     ./Exiled.Installer-Linux -p /home/container/server_files --appdata /home/container/.config
   fi
 fi
